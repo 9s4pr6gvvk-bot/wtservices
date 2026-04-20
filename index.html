@@ -1,165 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WT Services – Coming Soon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon | WT Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  background:#f7f7f5;color:#111111;
+  font-family:'Outfit',sans-serif;font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+a{text-decoration:none;color:inherit;}
 
-    :root {
-      --bg: #f7f7f5;
-      --white: #ffffff;
-      --black: #111111;
-      --mid: #555555;
-      --light: #aaaaaa;
-      --border: #e2e2de;
-    }
+/* BG TEXT */
+.bg-text{
+  position:fixed;
+  font-family:'Syne',sans-serif;
+  font-size:clamp(120px,20vw,260px);
+  font-weight:800;
+  color:rgba(0,0,0,.04);
+  letter-spacing:-.04em;
+  line-height:1;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
 
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--black);
-      font-family: 'DM Sans', sans-serif;
-    }
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 56px;
+}
+.logo-wrap{
+  background:#fff;
+  border-radius:10px;
+  padding:10px 16px;
+  box-shadow:0 1px 12px rgba(0,0,0,.08);
+}
+.logo-wrap img{height:52px;width:auto;max-width:160px;object-fit:contain;display:block;}
 
-    .page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
+/* MAIN */
+main{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:120px 40px 60px;position:relative;z-index:1;
+}
+.inner{text-align:center;max-width:520px;}
 
-    /* Logo container with white bg */
-    .logo-wrap {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 2rem 2.4rem;
-      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
-      opacity: 0;
-      transform: translateY(14px);
-      animation: fadeUp 0.7s 0.2s ease forwards;
-    }
-    .logo-wrap img {
-      width: 200px;
-      max-width: 55vw;
-      display: block;
-      object-fit: contain;
-    }
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:28px;
+}
+.eyebrow-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#111;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.2;}}
+.eyebrow span{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(17,17,17,.4);
+}
 
-    /* Thin divider */
-    .sep {
-      width: 40px;
-      height: 1px;
-      background: var(--border);
-      margin: 2.8rem auto;
-      opacity: 0;
-      animation: fadeIn 0.6s 0.7s ease forwards;
-    }
+h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(36px,5vw,58px);
+  font-weight:700;letter-spacing:-.025em;
+  line-height:1.05;margin-bottom:20px;
+  color:#111;
+}
 
-    /* Headline */
-    .headline {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.4rem, 7vw, 4.2rem);
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      line-height: 1.1;
-      color: var(--black);
-      opacity: 0;
-      transform: translateY(14px);
-      animation: fadeUp 0.7s 0.85s ease forwards;
-    }
+p{
+  font-size:16px;line-height:1.75;
+  color:rgba(17,17,17,.45);
+  margin-bottom:44px;
+}
 
-    .sub {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: var(--light);
-      letter-spacing: 0.04em;
-      opacity: 0;
-      animation: fadeUp 0.7s 1.05s ease forwards;
-    }
+.btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 
-    /* CTA */
-    .cta {
-      margin-top: 2.8rem;
-      opacity: 0;
-      animation: fadeUp 0.7s 1.25s ease forwards;
-    }
+.btn{
+  padding:13px 24px;border-radius:8px;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;letter-spacing:.05em;
+  display:inline-flex;align-items:center;gap:9px;
+  transition:all .25s;border:none;cursor:pointer;
+}
+.btn-dark{background:#111;color:#fff;}
+.btn-dark:hover{background:#333;transform:translateY(-1px);}
+.btn-ghost{
+  background:transparent;color:rgba(17,17,17,.6);
+  border:1px solid rgba(0,0,0,.15);
+}
+.btn-ghost:hover{background:rgba(0,0,0,.05);color:#111;border-color:rgba(0,0,0,.3);}
+.btn svg{width:13px;height:13px;transition:transform .25s;}
+.btn:hover svg{transform:translateX(3px);}
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.8rem 2rem;
-      background: var(--black);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .btn:hover {
-      background: #333;
-      transform: translateY(-1px);
-    }
-    .btn svg {
-      opacity: 0.7;
-    }
+/* FOOTER */
+footer{
+  position:relative;z-index:1;
+  text-align:center;padding:24px;
+  font-size:12px;color:rgba(17,17,17,.3);
+}
+footer a{
+  color:rgba(17,17,17,.4);
+  transition:color .2s;
+  border-bottom:1px solid transparent;
+}
+footer a:hover{color:#111;border-bottom-color:rgba(17,17,17,.3);}
 
-    /* Footer */
-    footer {
-      position: absolute;
-      bottom: 2rem;
-      font-size: 0.75rem;
-      color: var(--light);
-      letter-spacing: 0.03em;
-      opacity: 0;
-      animation: fadeIn 0.7s 1.5s ease forwards;
-    }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-  </style>
+/* RESPONSIVE */
+@media(max-width:640px){
+  nav{padding:18px 24px;}
+  .logo-wrap img{height:38px;}
+  .btn-row{flex-direction:column;align-items:center;}
+}
+</style>
 </head>
 <body>
-  <div class="page">
 
-    <div class="logo-wrap">
-      <img
-        src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/wtservices/refs/heads/main/MT-Services-logo%20(1).jpg"
-        alt="WT Services"
-      />
-    </div>
+<div class="bg-text">COMING SOON</div>
 
-    <div class="sep"></div>
-
-    <h1 class="headline">Website Coming Soon</h1>
-    <p class="sub">We're working on something new. Check back shortly.</p>
-
-    <div class="cta">
-      <a class="btn" href="mailto:info@wtservices.co.uk">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <polyline points="2,4 12,13 22,4"/>
-        </svg>
-        info@wtservices.co.uk
-      </a>
-    </div>
-
-    <footer>© 2026 WT Services</footer>
+<nav>
+  <div class="logo-wrap">
+    <img src="https://raw.githubusercontent.com/9s4pr6gvvk-bot/wtservices/refs/heads/main/MT-Services-logo%20(1).jpg" alt="WT Services">
   </div>
+</nav>
+
+<main>
+  <div class="inner">
+    <div class="eyebrow">
+      <div class="eyebrow-dot"></div>
+      <span>Coming Soon</span>
+    </div>
+
+    <h1>Something great<br>is on its way.</h1>
+
+    <p>We're building our new website. In the meantime, feel free to reach out — we'd love to hear from you.</p>
+
+    <div class="btn-row">
+      <a href="mailto:info@wtservices.co.uk" class="btn btn-dark">
+        Get in Touch
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+      </a>
+      <a href="mailto:info@wtservices.co.uk" class="btn btn-ghost">info@wtservices.co.uk</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 WT Services. All rights reserved. &nbsp;·&nbsp; Website by <a href="https://franksmedia.co.uk" target="_blank" rel="noopener">Franks Media</a>
+</footer>
+
 </body>
 </html>
